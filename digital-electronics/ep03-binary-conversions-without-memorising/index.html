@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decimal to Binary, Hex & Octal Without Tables | Free Notes</title>
+<meta name="description" content="Convert decimal to binary without memorising: the powers-of-2 method, repeated division by 2, binary to hex and octal by grouping, and binary addition with carries. Worked example 2026 = 11111101010 = 0x7EA. Free notes and practice questions.">
+<link rel="canonical" href="https://nucleuxzero.github.io/digital-electronics/ep03-binary-conversions-without-memorising/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="NucleuX Zero">
+<meta property="og:title" content="Decimal to Binary, Hex & Octal Without Tables | Free Notes">
+<meta property="og:description" content="Convert decimal to binary without memorising: the powers-of-2 method, repeated division by 2, binary to hex and octal by grouping, and binary addition with carries. Worked example 2026 = 11111101010 = 0x7EA. Free notes and practice questions.">
+<meta property="og:url" content="https://nucleuxzero.github.io/digital-electronics/ep03-binary-conversions-without-memorising/">
+<meta property="og:image" content="https://nucleuxzero.github.io/assets/ep03-thumb.jpg">
+<meta property="og:image:width" content="960">
+<meta property="og:image:height" content="540">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Decimal to Binary, Hex & Octal Without Tables | Free Notes">
+<meta name="twitter:description" content="Convert decimal to binary without memorising: the powers-of-2 method, repeated division by 2, binary to hex and octal by grouping, and binary addition with carries. Worked example 2026 = 11111101010 = 0x7EA. Free notes and practice questions.">
+<meta name="twitter:image" content="https://nucleuxzero.github.io/assets/ep03-thumb.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "LearningResource",
+ "name": "Binary Conversions Without Memorising Anything",
+ "headline": "Decimal to Binary, Hex and Octal Without Tables",
+ "description": "Convert decimal to binary without memorising: the powers-of-2 method, repeated division by 2, binary to hex and octal by grouping, and binary addition with carries. Worked example 2026 = 11111101010 = 0x7EA. Free notes and practice questions.",
+ "url": "https://nucleuxzero.github.io/digital-electronics/ep03-binary-conversions-without-memorising/", "image": "https://nucleuxzero.github.io/assets/ep03-thumb.jpg", "inLanguage": "en",
+ "learningResourceType": "Lecture notes", "educationalLevel": "Beginner", "isAccessibleForFree": true,
+ "teaches": ["Decimal to binary conversion", "Repeated division by 2", "Binary to hexadecimal and octal conversion", "Binary addition"],
+ "keywords": "decimal to binary, decimal to binary conversion, repeated division by 2, binary to hex, binary to octal, binary addition, number system conversion",
+ "datePublished": "2026-11-29", "dateModified": "2026-11-29",
+ "author": {"@type": "Organization", "name": "NucleuX Zero", "url": "https://www.youtube.com/@nucleux_zero"},
+ "isPartOf": {"@type": "Course", "name": "Digital Electronics (Season 1)", "url": "https://nucleuxzero.github.io/", "provider": {"@type": "Organization", "name": "NucleuX Zero"}}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="../../" aria-label="NucleuX Zero home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="13" ry="5.5" fill="none" stroke="var(--cyan)" stroke-width="2"/><ellipse cx="16" cy="16" rx="13" ry="5.5" fill="none" stroke="var(--cyan)" stroke-width="2" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="13" ry="5.5" fill="none" stroke="var(--cyan)" stroke-width="2" transform="rotate(-60 16 16)"/><circle cx="16" cy="16" r="3.2" fill="var(--amber)"/></svg>
+      NucleuX Zero
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="../../#course" aria-current="page">Digital Electronics</a>
+      <a href="#practice">Practice</a>
+      <a href="#glossary">Glossary</a>
+      <a href="../../#about">About</a>
+    </nav>
+    <a class="yt" href="https://www.youtube.com/@nucleux_zero">YouTube</a>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+  <aside class="rail" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#powers">1 · Pay with powers of two</a></li>
+      <li><a href="#divide">2 · Divide by two</a></li>
+      <li><a href="#grouping">3 · Hex and octal for free</a></li>
+      <li><a href="#addition">4 · Adding in binary</a></li>
+      <li><a href="#glossary">Key terms</a></li>
+      <li><a href="#practice">Practice check</a></li>
+    </ol>
+  </aside>
+
+  <main>
+    <div class="crumb">Digital Electronics · Season 1 · Episode 3</div>
+    <h1>Binary conversions without memorising anything</h1>
+    <p class="lede">Memorising the binary table for 0 to 15 works until an exam asks for <span class="mono">2026</span>. These notes give you two methods that work for any number, a free shortcut to hex and octal, and the one rule behind binary addition.</p>
+    <div class="meta">
+      <span class="chip">Video 8:34</span><span class="chip">Read 8 min</span><span class="chip">Beginner</span><span class="chip">Exams · GATE · viva</span>
+    </div>
+
+    <a class="video" href="https://www.youtube.com/@nucleux_zero">
+      <img src="../../assets/ep03-thumb.jpg" alt="Episode 3 thumbnail: 2026 = ? No table">
+      <div><span class="play">▶ Watch the episode</span><b>Digital Electronics #3</b><span>Animated, 8:34. Watch first, then use these notes to revise.</span></div>
+    </a>
+
+    <div class="tldr">
+      <h2>In 30 seconds</h2>
+      <ul>
+        <li><b>A binary number is a list of which powers of two you used.</b> Take the biggest power that fits, subtract, repeat: <span class="mono">13 = 8 + 4 + 1 = 1101</span>.</li>
+        <li>For big numbers, <b>divide by 2 repeatedly and read the remainders bottom up</b>: <span class="mono">2026 = 11111101010</span>.</li>
+        <li>Once you have binary, <b>hex and octal are just grouping</b> (fours and threes): <span class="mono">2026 = 0x7EA = 3752<sub>8</sub></span>. And in addition, <b>1 + 1 = 0, carry 1</b>.</li>
+      </ul>
+    </div>
+
+    <section id="powers">
+      <h2><span class="n">01</span>Method 1: pay with powers of two</h2>
+      <p>Imagine a coin box with only five coins: ₹1, ₹2, ₹4, ₹8 and ₹16, and you may use each coin at most once. How do you pay exactly ₹13? Start with the <b>biggest coin that fits</b>. ₹16 is too big. ₹8 fits, leaving ₹5. ₹4 fits, leaving ₹1. ₹2 is too big for ₹1, so skip it. ₹1 fits, and nothing is left.</p>
+      <p>Now write a <b>1 for every coin you used</b> and a <b>0 for every coin you skipped</b>, in the order 8, 4, 2, 1. That gives <span class="mono">1101</span>, which is 13 in binary. Those coin values are exactly the binary place values from last episode, so this is just place value run backwards.</p>
+      <figure>
+        <svg viewBox="0 0 620 270" role="img" aria-label="Paying 13 rupees with coins 16, 8, 4, 2, 1: use 8, 4 and 1, so 13 = 1101"><circle cx="70" cy="70" r="40" class="st-line" stroke-width="3" style="fill:var(--tint)"/><text x="70.0" y="77.0" font-size="20" text-anchor="middle" fill="var(--muted)" font-family="Inter, sans-serif" font-weight="800">₹16</text><text x="70.0" y="136.0" font-size="13" text-anchor="middle" fill="var(--red)" font-family="Inter, sans-serif" font-weight="700">too big</text><circle cx="190" cy="70" r="40" class="st-amber" stroke-width="3" style="fill:var(--tint)"/><text x="190.0" y="77.0" font-size="20" text-anchor="middle" fill="var(--ink)" font-family="Inter, sans-serif" font-weight="800">₹8</text><text x="190.0" y="136.0" font-size="13" text-anchor="middle" fill="var(--green)" font-family="Inter, sans-serif" font-weight="700">used</text><rect x="166.0" y="162.0" width="48" height="54" rx="7" class="st-green" stroke-width="2.5" style="fill:var(--tint)"/><text x="190.0" y="199.1" font-size="28" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><circle cx="310" cy="70" r="40" class="st-amber" stroke-width="3" style="fill:var(--tint)"/><text x="310.0" y="77.0" font-size="20" text-anchor="middle" fill="var(--ink)" font-family="Inter, sans-serif" font-weight="800">₹4</text><text x="310.0" y="136.0" font-size="13" text-anchor="middle" fill="var(--green)" font-family="Inter, sans-serif" font-weight="700">used</text><rect x="286.0" y="162.0" width="48" height="54" rx="7" class="st-green" stroke-width="2.5" style="fill:var(--tint)"/><text x="310.0" y="199.1" font-size="28" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><circle cx="430" cy="70" r="40" class="st-line" stroke-width="3" style="fill:var(--tint)"/><text x="430.0" y="77.0" font-size="20" text-anchor="middle" fill="var(--muted)" font-family="Inter, sans-serif" font-weight="800">₹2</text><text x="430.0" y="136.0" font-size="13" text-anchor="middle" fill="var(--red)" font-family="Inter, sans-serif" font-weight="700">too big</text><rect x="406.0" y="162.0" width="48" height="54" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="430.0" y="199.1" font-size="28" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><circle cx="550" cy="70" r="40" class="st-amber" stroke-width="3" style="fill:var(--tint)"/><text x="550.0" y="77.0" font-size="20" text-anchor="middle" fill="var(--ink)" font-family="Inter, sans-serif" font-weight="800">₹1</text><text x="550.0" y="136.0" font-size="13" text-anchor="middle" fill="var(--green)" font-family="Inter, sans-serif" font-weight="700">used</text><rect x="526.0" y="162.0" width="48" height="54" rx="7" class="st-green" stroke-width="2.5" style="fill:var(--tint)"/><text x="550.0" y="199.1" font-size="28" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><text x="310.0" y="250.0" font-size="18" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">13 = 8 + 4 + 1  →  1101</text></svg>
+        <figcaption>Used coins become 1s, skipped coins become 0s. The leading ₹16 would be a leading 0, so we drop it.</figcaption>
+      </figure>
+      <div class="tbl"><table>
+        <thead><tr><th>Worked example: 20</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr></thead>
+        <tbody>
+          <tr><td>Fits?</td><td>yes (4 left)</td><td>no</td><td>yes (0 left)</td><td>no</td><td>no</td></tr>
+          <tr><td>Bit</td><td class="mono"><b>1</b></td><td class="mono">0</td><td class="mono"><b>1</b></td><td class="mono">0</td><td class="mono">0</td></tr>
+        </tbody>
+      </table></div>
+      <p>So <span class="mono">20 = 10100</span>. Always check backwards with place values: 16 + 4 = 20. This method is fast for small numbers, but you need to know the powers of two (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 …) up to your number.</p>
+    </section>
+
+    <section id="divide">
+      <h2><span class="n">02</span>Method 2: divide by two</h2>
+      <p>For a number like 2026 you would need powers up to 1024, and under exam pressure that is where mistakes creep in. Method 2 needs nothing but halving. Think of sharing sweets between two friends: you hand them out in pairs, and if one is left over, that leftover is a <b>1</b>. If nothing is left, it is a <b>0</b>.</p>
+      <p>Divide the number by 2, write the quotient below and the remainder on the right, and repeat with the quotient until you reach 0. Then <b>read the remainders from the bottom up</b>.</p>
+      <figure>
+        <svg viewBox="0 0 620 230" role="img" aria-label="Repeated division of 13 by 2 gives remainders 1, 0, 1, 1; read bottom up: 1101"><text x="60.0" y="40.0" font-size="20" text-anchor="start" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">13 ÷ 2 = 6</text><text x="250.0" y="40.0" font-size="20" text-anchor="start" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="700">r 1</text><text x="60.0" y="84.0" font-size="20" text-anchor="start" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">6 ÷ 2 = 3</text><text x="250.0" y="84.0" font-size="20" text-anchor="start" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="700">r 0</text><text x="60.0" y="128.0" font-size="20" text-anchor="start" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">3 ÷ 2 = 1</text><text x="250.0" y="128.0" font-size="20" text-anchor="start" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="700">r 1</text><text x="60.0" y="172.0" font-size="20" text-anchor="start" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1 ÷ 2 = 0</text><text x="250.0" y="172.0" font-size="20" text-anchor="start" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="700">r 1</text><path d="M300 186 L300 30" class="st-amber" stroke-width="3"/><path d="M292 42 L300 26 L308 42" class="st-amber" stroke-width="3"/><text x="300.0" y="210.0" font-size="13" text-anchor="middle" fill="var(--amber)" font-family="Inter, sans-serif" font-weight="700">read bottom → top</text><rect x="380.0" y="80.0" width="48" height="56" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="404.0" y="118.1" font-size="28" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="436.0" y="80.0" width="48" height="56" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="460.0" y="118.1" font-size="28" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="492.0" y="80.0" width="48" height="56" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="516.0" y="118.1" font-size="28" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="548.0" y="80.0" width="48" height="56" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="572.0" y="118.1" font-size="28" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><text x="482.0" y="166.0" font-size="18" text-anchor="middle" fill="var(--cyan)" font-family="JetBrains Mono, monospace" font-weight="700">= 1101</text></svg>
+        <figcaption>Same answer as the coins: 13 = 1101. Two methods, one truth.</figcaption>
+      </figure>
+      <p><b>Why bottom up?</b> The first remainder tells you whether the number is odd or even, which is exactly the ones place: the smallest bit (LSB). Each later remainder belongs to the next bigger place, so the last remainder is the biggest bit (MSB). A handy check: every even number ends in 0 in binary, every odd number in 1.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Step</th><th>Divide</th><th>Quotient</th><th>Remainder</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td class="mono">2026 ÷ 2</td><td class="mono">1013</td><td class="mono"><b>0</b></td></tr>
+          <tr><td class="mono">2</td><td class="mono">1013 ÷ 2</td><td class="mono">506</td><td class="mono"><b>1</b></td></tr>
+          <tr><td class="mono">3</td><td class="mono">506 ÷ 2</td><td class="mono">253</td><td class="mono"><b>0</b></td></tr>
+          <tr><td class="mono">4</td><td class="mono">253 ÷ 2</td><td class="mono">126</td><td class="mono"><b>1</b></td></tr>
+          <tr><td class="mono">5</td><td class="mono">126 ÷ 2</td><td class="mono">63</td><td class="mono"><b>0</b></td></tr>
+          <tr><td class="mono">6</td><td class="mono">63 ÷ 2</td><td class="mono">31</td><td class="mono"><b>1</b></td></tr>
+          <tr><td class="mono">7</td><td class="mono">31 ÷ 2</td><td class="mono">15</td><td class="mono"><b>1</b></td></tr>
+          <tr><td class="mono">8</td><td class="mono">15 ÷ 2</td><td class="mono">7</td><td class="mono"><b>1</b></td></tr>
+          <tr><td class="mono">9</td><td class="mono">7 ÷ 2</td><td class="mono">3</td><td class="mono"><b>1</b></td></tr>
+          <tr><td class="mono">10</td><td class="mono">3 ÷ 2</td><td class="mono">1</td><td class="mono"><b>1</b></td></tr>
+          <tr><td class="mono">11</td><td class="mono">1 ÷ 2</td><td class="mono">0</td><td class="mono"><b>1</b></td></tr>
+        </tbody>
+      </table></div>
+      <p>Reading the remainder column from the bottom up gives <span class="mono"><b>2026 = 11111101010</b></span>: eleven bits, about a minute, no table. Check: 1024 + 512 + 256 + 128 + 64 + 32 + 8 + 2 = 2026.</p>
+    </section>
+
+    <section id="grouping">
+      <h2><span class="n">03</span>Hex and octal for free</h2>
+      <p>You could convert 2026 to hex by dividing by 16 repeatedly, but there is a faster way you already know. One hex digit is exactly four bits, so take the binary answer and <b>group it in fours, starting from the right</b>. Pad the leftmost group with zeros: <span class="mono">0111 1110 1010</span>. Then read each group: 0111 = 7, 1110 = 14 = E, 1010 = 10 = A. So <span class="mono">2026 = 0x7EA</span>.</p>
+      <p>Octal works the same way with <b>groups of three</b>, because 8 = 2<sup>3</sup>: <span class="mono">011 111 101 010 = 3 7 5 2</span>, so 2026 = 3752<sub>8</sub>.</p>
+      <figure>
+        <svg viewBox="0 0 660 350" role="img" aria-label="2026 in binary grouped in fours gives 7EA in hex, and in threes gives 3752 in octal"><text x="20.0" y="26.0" font-size="13" text-anchor="start" fill="var(--muted)" font-family="Inter, sans-serif" font-weight="700">HEX · groups of 4 from the right (first group padded with a 0)</text><rect x="20.0" y="40.0" width="36" height="44" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="38.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="60.0" y="40.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="78.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="100.0" y="40.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="118.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="140.0" y="40.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="158.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><path d="M20 94 L20 102 L176 102 L176 94" class="st-amber" stroke-width="2.5"/><text x="98.0" y="128.0" font-size="22" text-anchor="middle" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="800">7</text><rect x="198.0" y="40.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="216.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="238.0" y="40.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="256.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="278.0" y="40.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="296.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="318.0" y="40.0" width="36" height="44" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="336.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><path d="M198 94 L198 102 L354 102 L354 94" class="st-amber" stroke-width="2.5"/><text x="276.0" y="128.0" font-size="22" text-anchor="middle" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="800">E</text><rect x="376.0" y="40.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="394.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="416.0" y="40.0" width="36" height="44" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="434.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="456.0" y="40.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="474.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="496.0" y="40.0" width="36" height="44" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="514.0" y="69.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><path d="M376 94 L376 102 L532 102 L532 94" class="st-amber" stroke-width="2.5"/><text x="454.0" y="128.0" font-size="22" text-anchor="middle" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="800">A</text><text x="20.0" y="176.0" font-size="13" text-anchor="start" fill="var(--muted)" font-family="Inter, sans-serif" font-weight="700">OCTAL · groups of 3</text><rect x="20.0" y="190.0" width="36" height="44" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="38.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="60.0" y="190.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="78.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="100.0" y="190.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="118.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><path d="M20 244 L20 252 L136 252 L136 244" class="st-cyan" stroke-width="2.5"/><text x="78.0" y="278.0" font-size="22" text-anchor="middle" fill="var(--cyan)" font-family="JetBrains Mono, monospace" font-weight="800">3</text><rect x="158.0" y="190.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="176.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="198.0" y="190.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="216.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="238.0" y="190.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="256.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><path d="M158 244 L158 252 L274 252 L274 244" class="st-cyan" stroke-width="2.5"/><text x="216.0" y="278.0" font-size="22" text-anchor="middle" fill="var(--cyan)" font-family="JetBrains Mono, monospace" font-weight="800">7</text><rect x="296.0" y="190.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="314.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="336.0" y="190.0" width="36" height="44" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="354.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="376.0" y="190.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="394.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><path d="M296 244 L296 252 L412 252 L412 244" class="st-cyan" stroke-width="2.5"/><text x="354.0" y="278.0" font-size="22" text-anchor="middle" fill="var(--cyan)" font-family="JetBrains Mono, monospace" font-weight="800">5</text><rect x="434.0" y="190.0" width="36" height="44" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="452.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="474.0" y="190.0" width="36" height="44" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="492.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="514.0" y="190.0" width="36" height="44" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="532.0" y="219.9" font-size="22" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><path d="M434 244 L434 252 L550 252 L550 244" class="st-cyan" stroke-width="2.5"/><text x="492.0" y="278.0" font-size="22" text-anchor="middle" fill="var(--cyan)" font-family="JetBrains Mono, monospace" font-weight="800">2</text><text x="330.0" y="330.0" font-size="17" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">2026 = 11111101010₂ = 0x7EA = 3752₈</text></svg>
+        <figcaption>One binary answer, three bases. Always group from the right (the LSB).</figcaption>
+      </figure>
+      <div class="tbl"><table>
+        <thead><tr><th>Check with place values</th><th>Hex 0x7EA</th><th>Octal 3752</th></tr></thead>
+        <tbody>
+          <tr><td>Most significant digit</td><td class="mono">7 × 256 = 1792</td><td class="mono">3 × 512 = 1536</td></tr>
+          <tr><td>Next</td><td class="mono">14 × 16 = 224</td><td class="mono">7 × 64 = 448</td></tr>
+          <tr><td>Next</td><td class="mono">10 × 1 = 10</td><td class="mono">5 × 8 = 40</td></tr>
+          <tr><td>Last</td><td class="mono">–</td><td class="mono">2 × 1 = 2</td></tr>
+          <tr><td><b>Total</b></td><td class="mono"><b>2026</b></td><td class="mono"><b>2026</b></td></tr>
+        </tbody>
+      </table></div>
+      <h3>Try it: convert any number</h3>
+      <figure>
+        <div class="bytebox">
+          <label style="font:700 15px var(--body);color:var(--muted)">Decimal (0 to 65535) <input id="dec" type="number" min="0" max="65535" value="2026" style="font:700 20px var(--mono);width:9ch;margin-left:8px;padding:6px 8px;border-radius:10px;border:2px solid var(--line);background:var(--tint);color:var(--ink)"></label>
+          <div class="readout" id="binout">11111101010</div>
+          <p style="color:var(--muted);font-size:15px;margin:0" id="ladder"></p>
+        </div>
+        <figcaption>Type a number. The page divides by 2 for you, shows the remainders, and groups the bits into hex and octal.</figcaption>
+      </figure>
+      <div class="callout exam"><b>Exam corner: the standard conversion methods.</b> Decimal → binary: <b>repeated division by 2</b> for the integer part (read remainders bottom up), and <b>repeated multiplication by 2</b> for a fractional part (read the integer parts top down): <span class="mono">0.625 × 2 = 1.25 → 1</span>, <span class="mono">0.25 × 2 = 0.5 → 0</span>, <span class="mono">0.5 × 2 = 1.0 → 1</span>, so <span class="mono">0.625<sub>10</sub> = 0.101<sub>2</sub></span>. The same division method works for any base: divide by 8 for octal, by 16 for hex. Binary → hex/octal: group in 4s/3s from the binary point outwards.</div>
+    </section>
+
+    <section id="addition">
+      <h2><span class="n">04</span>Adding in binary</h2>
+      <p>Think of a car's odometer. When a wheel goes past 9, it rolls back to 0 and pushes a 1 into the next wheel. That push is a <b>carry</b>. In binary each wheel has only two digits, so it rolls over much sooner.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Inputs</th><th>Sum</th><th>Write</th><th>Carry</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">0 + 0</td><td class="mono">0</td><td class="mono">0</td><td class="mono">0</td></tr>
+          <tr><td class="mono">0 + 1</td><td class="mono">1</td><td class="mono">1</td><td class="mono">0</td></tr>
+          <tr><td class="mono">1 + 1</td><td class="mono">10</td><td class="mono">0</td><td class="mono"><b>1</b></td></tr>
+          <tr><td class="mono">1 + 1 + 1</td><td class="mono">11</td><td class="mono">1</td><td class="mono"><b>1</b></td></tr>
+        </tbody>
+      </table></div>
+      <p>Those four rows are the whole of binary addition. Add column by column from the right, exactly like decimal, and carry whenever a column reaches 2 or 3.</p>
+      <figure>
+        <svg viewBox="0 0 520 256" role="img" aria-label="Column addition 0110 + 0111 = 1101 with carries into the two middle columns"><rect x="176.0" y="50.0" width="48" height="52" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="200.0" y="85.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="240.0" y="50.0" width="48" height="52" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="264.0" y="85.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="304.0" y="50.0" width="48" height="52" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="328.0" y="85.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="368.0" y="50.0" width="48" height="52" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="392.0" y="85.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="176.0" y="112.0" width="48" height="52" rx="7" class="st-line" stroke-width="2.5" style="fill:var(--tint)"/><text x="200.0" y="147.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="240.0" y="112.0" width="48" height="52" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="264.0" y="147.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="304.0" y="112.0" width="48" height="52" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="328.0" y="147.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="368.0" y="112.0" width="48" height="52" rx="7" class="st-cyan" stroke-width="2.5" style="fill:var(--tint)"/><text x="392.0" y="147.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><text x="120.0" y="84.0" font-size="22" text-anchor="middle" fill="var(--muted)" font-family="Inter, sans-serif" font-weight="700">6</text><text x="120.0" y="146.0" font-size="22" text-anchor="middle" fill="var(--muted)" font-family="Inter, sans-serif" font-weight="700">+ 7</text><path d="M150 176 L426 176" class="st-line" stroke-width="3"/><rect x="176.0" y="186.0" width="48" height="52" rx="7" class="st-green" stroke-width="2.5" style="fill:var(--tint)"/><text x="200.0" y="221.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="240.0" y="186.0" width="48" height="52" rx="7" class="st-green" stroke-width="2.5" style="fill:var(--tint)"/><text x="264.0" y="221.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><rect x="304.0" y="186.0" width="48" height="52" rx="7" class="st-green" stroke-width="2.5" style="fill:var(--tint)"/><text x="328.0" y="221.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">0</text><rect x="368.0" y="186.0" width="48" height="52" rx="7" class="st-green" stroke-width="2.5" style="fill:var(--tint)"/><text x="392.0" y="221.4" font-size="26" text-anchor="middle" fill="var(--ink)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><text x="120.0" y="220.0" font-size="22" text-anchor="middle" fill="var(--green)" font-family="Inter, sans-serif" font-weight="700">= 13</text><text x="200.0" y="36.0" font-size="16" text-anchor="middle" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><text x="264.0" y="36.0" font-size="16" text-anchor="middle" fill="var(--amber)" font-family="JetBrains Mono, monospace" font-weight="700">1</text><text x="384.0" y="36.0" font-size="13" text-anchor="start" fill="var(--amber)" font-family="Inter, sans-serif" font-weight="700">← carries</text></svg>
+        <figcaption>6 + 7: the two middle columns produce carries. Result 1101 = 13.</figcaption>
+      </figure>
+      <p>Every adder inside a processor does exactly this, billions of times a second. The "write" column is the XOR of the inputs and the carry is their AND, which is why an adder can be built from logic gates; we build one in Season 2.</p>
+      <div class="callout"><b>Remember:</b> 1 + 1 = 0, carry 1. That single rule builds every adder.</div>
+    </section>
+
+    <section id="glossary">
+      <h2><span class="n">05</span>Key terms</h2>
+      <dl>
+        <dt>Power of two</dt><dd>1, 2, 4, 8, 16 … each double the last. These are the binary place values.</dd>
+        <dt>Repeated division</dt><dd>Divide by the base, keep the remainder, repeat with the quotient until 0; read remainders bottom up.</dd>
+        <dt>Quotient</dt><dd>The whole-number result of a division (13 ÷ 2 = 6).</dd>
+        <dt>Remainder</dt><dd>What is left after dividing (13 ÷ 2 leaves 1). In base 2 it is always 0 or 1.</dd>
+        <dt>LSB</dt><dd>Least significant bit: the rightmost bit, worth 1. It is the first remainder.</dd>
+        <dt>MSB</dt><dd>Most significant bit: the leftmost bit. It is the last remainder.</dd>
+        <dt>Padding</dt><dd>Adding leading zeros to complete the leftmost group (111 → 0111). It doesn't change the value.</dd>
+        <dt>Octal</dt><dd>Base 8; one digit = 3 bits.</dd>
+        <dt>Hexadecimal</dt><dd>Base 16; one digit = 4 bits (A = 10 … F = 15).</dd>
+        <dt>Carry</dt><dd>The 1 pushed into the next column when a column's sum reaches the base (2 in binary).</dd>
+      </dl>
+    </section>
+
+    <section id="practice">
+      <h2><span class="n">06</span>Practice check</h2>
+      <div class="q"><p>1. What is 25 in binary?</p>
+        <ol><li class="mono">11001</li><li class="mono">10011</li><li class="mono">11010</li><li class="mono">10101</li></ol>
+        <details><summary>Show answer</summary><b>A, 11001.</b> 16 + 8 + 1 = 25.</details></div>
+      <div class="q"><p>2. In repeated division by 2, which remainder becomes the most significant bit?</p>
+        <ol><li>The first</li><li>The last</li><li>The largest</li><li>The middle one</li></ol>
+        <details><summary>Show answer</summary><b>B, the last.</b> The first remainder is the ones place (LSB); the last is the biggest bit, which is why you read bottom up.</details></div>
+      <div class="q"><p>3. What is 1011 + 0111?</p>
+        <ol><li class="mono">10010</li><li class="mono">11110</li><li class="mono">11001</li><li class="mono">01100</li></ol>
+        <details><summary>Show answer</summary><b>A, 10010.</b> 11 + 7 = 18 = 16 + 2.</details></div>
+      <div class="q"><p>Viva: Convert 0.625 to binary.</p>
+        <details><summary>Show answer</summary>Multiply the fraction by 2 and keep the integer parts, top down: 0.625 → 1.25 (1), 0.25 → 0.5 (0), 0.5 → 1.0 (1). So 0.625 = <b>0.101<sub>2</sub></b> (= ½ + ⅛).</details></div>
+      <div class="q"><p>Viva: Why does every even number end in 0 in binary?</p>
+        <details><summary>Show answer</summary>The last bit is the ones place, which equals the remainder of the number divided by 2. An even number leaves remainder 0, so its LSB is 0.</details></div>
+    </section>
+
+    <div class="next">
+      <div><small>Next · Episode 4</small><b>Why computers use 2's complement (not 1's)</b><span style="color:var(--muted)">No minus sign in binary. So how does a computer store −5?</span></div>
+      <a class="btn" href="https://www.youtube.com/@nucleux_zero">Subscribe for it</a>
+    </div>
+  </main>
+</div>
+
+<footer><div><span>© NucleuX Zero · Free notes, because knowledge should not have a price.</span><a href="https://www.youtube.com/@nucleux_zero">youtube.com/@nucleux_zero</a></div></footer>
+
+<script>
+(function () {
+  var inp = document.getElementById("dec"), out = document.getElementById("binout"), lad = document.getElementById("ladder");
+  function upd() {
+    var n = Math.max(0, Math.min(65535, parseInt(inp.value || "0", 10) || 0)), steps = [], m = n;
+    if (m === 0) steps.push("0 ÷ 2 = 0 r 0");
+    while (m > 0) { steps.push(m + " ÷ 2 = " + Math.floor(m / 2) + " r " + (m % 2)); m = Math.floor(m / 2); }
+    var b = n.toString(2);
+    out.textContent = b;
+    var shown = steps.length > 6 ? steps.slice(0, 3).concat(["…"], steps.slice(-2)) : steps;
+    lad.textContent = shown.join("   ·   ") + "   →   read the remainders bottom up.   Hex 0x" + n.toString(16).toUpperCase() + "   ·   Octal " + n.toString(8);
+  }
+  inp.addEventListener("input", upd); upd();
+})();
+</script>
+</body>
+</html>
